@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #483D8B;
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.hero{
+    color: white ;
+}
+.hero h4{
+    font-size: 23px;
+    letter-spacing: 2px;
+    gap: 2px;
+}
+.balance form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.balance label[for="balance"] {
+    font-weight: bold;
+    color: white ;
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+}
+.balance input[type="text"]{
+    width: 270px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 30px;
+    border: none;
+    background-color: white;
+    outline: none;
+
+}
+.balance button{
+    width: 120px;
+    height: 38px;
+    border: none;
+    outline: none;
+    background-color: green ;
+    border-radius:20px ;
+    font-size: 20px;
+}
+.detail .expense{
+    margin-left: 70px;
+}
+.detail .list{
+    margin-right: 80px;
+}
+.list1{
+    margin: 10px;
+    padding: 10px;
+}
+.expense {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+
+    
+  }
+  
+  .expense h1 {
+    margin-bottom: 20px;
+  }
+  
+  .expense label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .expense select,
+  .expense input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .expense select:focus,
+  .expense input:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+  }
+  .add-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2px;
+    align-items: center;
+    text-align: center;
+    margin-left: 80px;
+  }  
+  .list{
+    padding: 20px;
+    padding-right: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    background-color: #f8f9fa;
+    width: 100vh;
+
+  }
+
+  .table th, .table td {
+    padding: 15px;
+    text-align: center;
+  }
+  .table tr:not(:first-child) {
+    border-top: 1px solid #dee2e6;
+  }
+  .table th {
+    background-color: #f8f9fa;
+  }
+  .table td button {
+    margin-right: 5px;
+  }
+  .blnc-detail{
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    color: black;;
+
+    
+  }
+  .blnc-detail h4,h2{
+    padding: 5px;
+  }
