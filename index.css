@@ -130,7 +130,7 @@ body{
     background-color: #f8f9fa;
   }
   .table td button {
-    margin-right: 5px;
+    margin-right: 3px;
   }
   .blnc-detail{
     border-radius: 15px;
@@ -142,4 +142,7 @@ body{
   }
   .blnc-detail h4,h2{
     padding: 5px;
+  }
+  .blnc-detail{
+    margin-bottom: 15px;
   }
