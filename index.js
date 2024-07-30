@@ -1,6 +1,9 @@
-document.querySelector(".btn-success").addEventListener("click", () => {
+let expenses = [];
+let updateIndex = null;
+
+document.querySelector(".btn-success").addEventListener("click", () => { 
   // Get values from the DOM
-  let balanceInput = document.querySelector(".balnc");
+  let balanceInput = document.querySelector(".balnc"); // Typo fixed here
   let totalblnc = parseFloat(balanceInput.value); // Convert input to number
   let total = document.querySelector(".total");
   let expensesElement = document.querySelector(".expenses");
@@ -49,8 +52,8 @@ let updateBalances = () => {
 
   expensesElement.innerHTML = `RS: ${totalExpenses}`;
   remaining.innerHTML = `RS: ${totalblnc - totalExpenses}`;
-  if(totalblnc < totalExpenses){
-    alert("Expenses exceedes your budget ,please adjust expenses")
+  if (totalblnc < totalExpenses) {
+    alert("Expenses exceed your budget, please adjust expenses");
   }
 };
 
@@ -60,16 +63,15 @@ let showList = () => {
   let tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
 
-  expenses.forEach((expense) => {
+  expenses.forEach((expense, index) => {
     let row = document.createElement("tr");
     row.innerHTML = `
       <td>${expense.category}</td>
       <td>${expense.amount}</td>
       <td>${expense.date}</td>
-       <td>
-        <button class="btn btn-primary update-btn" data-index="0">Update</button>
-        <button class="btn btn-danger delete-btn" data-index="0">Delete</button>
-
+      <td>
+        <button class="btn btn-primary update-btn" data-index="${index}" onclick="updateResult(${index})">Update</button> <!-- Fix index here -->
+        <button class="btn btn-danger delete-btn" data-index="${index}" onclick="deleteResult(${index})">Delete</button> <!-- Fix index here -->
       </td>
     `;
     tbody.appendChild(row);
@@ -80,6 +82,7 @@ let showList = () => {
 
 // Function to add expense and display it
 function addExpense() {
+  let expenses = getExpenses();
   const category = document.querySelector("#category").value;
   const amount = parseFloat(document.querySelector("#amount").value);
   const date = document.querySelector('input[type="date"]').value;
@@ -89,14 +92,59 @@ function addExpense() {
     return;
   }
 
-  const expenses = getExpenses();
-  expenses.push({ category, amount, date });
+  if (updateIndex === null) {
+    // Add new expense
+    expenses.push({ category, amount, date });
+  } else {
+    // Update existing expense
+    expenses[updateIndex] = { category, amount, date };
+    updateIndex = null;
+  }
+
   setExpenses(expenses);
-  category.value = "";
-  amount.value = "";
-  date.value = "";
   showList();
+  clearForm();
 }
+
+// Function to clear the input form
+function clearForm() {
+  document.getElementById("category").value = "";
+  document.getElementById("amount").value = "";
+  document.getElementById("date").value = "";
+}
+
+// Update expense functionality here
+let updateResult = (index) => {
+  let expenses = getExpenses();
+  let expense = expenses[index];
+
+  // Add debugging to check if the index is valid
+  console.log("Update index:", index);
+  console.log("Expenses:", expenses);
+
+  if (expense) {
+    document.getElementById("category").value = expense.category;
+    document.getElementById("amount").value = expense.amount;
+    document.getElementById("date").value = expense.date;
+    updateIndex = index;
+  } else {
+    console.error("Expense not found at index:", index);
+    alert("Expense not found. Please try again.");
+  }
+};
+
+// Delete functionality here
+let deleteResult = (index) => { 
+  let expenses = getExpenses();
+  if (index >= 0 && index < expenses.length) {
+    expenses.splice(index, 1);
+    setExpenses(expenses);
+    showList();
+  } else {
+    console.error("Invalid index:", index);
+    alert("Invalid index. Please try again.");
+  }
+};
 
 // Add event listener for the Add Expense button
 document.querySelector(".add-btn").addEventListener("click", (event) => {
@@ -106,6 +154,5 @@ document.querySelector(".add-btn").addEventListener("click", (event) => {
 
 // Initial render of expenses on page load
 document.addEventListener("DOMContentLoaded", () => {
-  // Clear all expenses from local storage on page load
-  localStorage.removeItem("expenses");
+  showList(); // Fix here: call showList instead of clearing local storage
 });
