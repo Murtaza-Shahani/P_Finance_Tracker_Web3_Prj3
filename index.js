@@ -3,8 +3,8 @@ let updateIndex = null;
 
 document.querySelector(".btn-success").addEventListener("click", () => { 
   // Get values from the DOM
-  let balanceInput = document.querySelector(".balnc"); // Typo fixed here
-  let totalblnc = parseFloat(balanceInput.value); // Convert input to number
+  let balanceInput = document.querySelector(".balnc"); 
+  let totalblnc = parseFloat(balanceInput.value); 
   let total = document.querySelector(".total");
   let expensesElement = document.querySelector(".expenses");
   let remaining = document.querySelector(".remaining");
@@ -95,9 +95,11 @@ function addExpense() {
   if (updateIndex === null) {
     // Add new expense
     expenses.push({ category, amount, date });
+    alert("Expense added successfully")
   } else {
     // Update existing expense
     expenses[updateIndex] = { category, amount, date };
+    alert("Expense updated successfully")
     updateIndex = null;
   }
 
@@ -118,7 +120,7 @@ let updateResult = (index) => {
   let expenses = getExpenses();
   let expense = expenses[index];
 
-  // Add debugging to check if the index is valid
+  // check if the index is valid
   console.log("Update index:", index);
   console.log("Expenses:", expenses);
 
@@ -136,17 +138,24 @@ let updateResult = (index) => {
 // Delete functionality here
 let deleteResult = (index) => { 
   let expenses = getExpenses();
+  
+  // Check if the index is valid
   if (index >= 0 && index < expenses.length) {
-    expenses.splice(index, 1);
-    setExpenses(expenses);
-    showList();
+    // confirmation before deleting
+    if (confirm("Are you sure you want to delete this expense?")) {
+      expenses.splice(index, 1);
+      setExpenses(expenses);
+      showList();
+      alert("Expense deleted successfully.");
+    }
   } else {
     console.error("Invalid index:", index);
     alert("Invalid index. Please try again.");
   }
 };
 
-// Add event listener for the Add Expense button
+
+// event listener for the Add Expense button
 document.querySelector(".add-btn").addEventListener("click", (event) => {
   event.preventDefault();
   addExpense();
@@ -154,5 +163,9 @@ document.querySelector(".add-btn").addEventListener("click", (event) => {
 
 // Initial render of expenses on page load
 document.addEventListener("DOMContentLoaded", () => {
-  showList(); // Fix here: call showList instead of clearing local storage
+   
 });
+// Clear all local storage data upon browser refresh
+window.onbeforeunload = () => {
+  localStorage.clear();
+};
