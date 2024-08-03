@@ -7,6 +7,31 @@
 body{
     background-color: #483D8B;
 }
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-nav {
+  
+  margin: 0 auto;
+}
+.navbar .collapse .nav-item .nav-link{
+  color: black !important;
+  font-size: 18px;
+  padding: 0 20px;
+  
+}
+.navbar .collapse .nav-item .nav-link:hover {
+  color: #460fdf !important; 
+}
+
+
+
+.navbar .logo{
+  width: 50px;
+}
 .main{
     display: flex;
     align-items: center;
@@ -64,7 +89,9 @@ body{
     padding: 10px;
 }
 .expense {
-    padding: 20px;
+  margin-top: 7px;
+    max-height: 600px;
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #f8f9fa;
@@ -109,7 +136,7 @@ body{
     margin-left: 80px;
   }  
   .list{
-    padding: 20px;
+    padding: 15px;
     padding-right: 15px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -133,10 +160,12 @@ body{
     margin-right: 3px;
   }
   .blnc-detail{
+    text-align: center;
+
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: white;
-    color: black;;
+    color: black;
 
     
   }
