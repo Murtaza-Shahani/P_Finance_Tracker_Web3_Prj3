@@ -2,7 +2,7 @@ let expenses = [];
 let updateIndex = null;
 
 document.querySelector(".btn-success").addEventListener("click", () => { 
-  // Get values from the DOM<<<<<<< HEAD
+  // Get values from the DOM
   let balanceInput = document.querySelector(".balnc"); // Typo fixed here
   let totalblnc = parseFloat(balanceInput.value); // Convert input to number
 
